@@ -8,6 +8,7 @@ import urllib.request
 movies = pickle.load(open('movies.pkl', 'rb'))
 movies_list = movies['title'].values
 
+similarity = pickle.load(open(SIMILARITY_FILE, "rb"))
 
 def recommend(movie):
     movie_index = movies[movies['title'] == movie].index[0]
@@ -38,4 +39,3 @@ URL = "https://huggingface.co/datasets/mohdanas925/movie-recommender-files/resol
 if not os.path.exists(SIMILARITY_FILE):
     urllib.request.urlretrieve(URL, SIMILARITY_FILE)
 
-similarity = pickle.load(open(SIMILARITY_FILE, "rb"))
