@@ -5,6 +5,13 @@ import pickle
 import os
 import urllib.request
 
+SIMILARITY_FILE = "similarity1.pkl"
+
+URL = "https://huggingface.co/datasets/mohdanas925/movie-recommender-files/resolve/main/similarity1.pkl"
+
+if not os.path.exists(SIMILARITY_FILE):
+    urllib.request.urlretrieve(URL, SIMILARITY_FILE)
+
 movies = pickle.load(open('movies.pkl', 'rb'))
 movies_list = movies['title'].values
 
@@ -30,12 +37,4 @@ if st.button('Recommend'):
     recommendations = recommend(selected_movie)
     for i in recommendations:
         st.write(i)
-
-
-SIMILARITY_FILE = "similarity1.pkl"
-
-URL = "https://huggingface.co/datasets/mohdanas925/movie-recommender-files/resolve/main/similarity1.pkl"
-
-if not os.path.exists(SIMILARITY_FILE):
-    urllib.request.urlretrieve(URL, SIMILARITY_FILE)
 
